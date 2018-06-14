@@ -1,15 +1,27 @@
 <template>
-  <div>
-    Sidebar<br><br>
-    <router-view/>
-    <p>{{msg}}</p>
-    HOLAMUNDIRIJILLO
-  </div>
+  <div class="wrapper toggled">
+    <Navbar></Navbar>
+    <div class="container-fluid">
+      <div class="row">
+        <Sidebar></Sidebar>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <router-view/>
+        </main>
+      </div>
+    </div>
+</div>
 </template>
 
 <script>
+import Sidebar from './Sidebar';
+import Navbar from './Navbar';
 export default {
   name: 'AdminLayout',
+  components: {
+    'Sidebar': Sidebar,
+    'Navbar': Navbar
+  },
   data () {
     return {
       msg: 'Wena'
@@ -19,6 +31,17 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
+body {
+  font-size: .875rem;
+}
 
+.feather {
+  width: 16px;
+  height: 16px;
+  vertical-align: text-bottom;
+}
+
+.border-top { border-top: 1px solid #e5e5e5; }
+.border-bottom { border-bottom: 1px solid #e5e5e5; }
 </style>

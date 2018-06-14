@@ -3,9 +3,17 @@
 import Vue from 'vue';
 import App from './App';
 import router from './router.js';
+import BootstrapVue from 'bootstrap-vue';
+
+
+Vue.use(BootstrapVue);
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap-vue/dist/bootstrap-vue.css';
+import '@fortawesome/fontawesome-free-webfonts/css/fontawesome.css';
+import '@fortawesome/fontawesome-free-webfonts/css/fa-regular.css';
+import '@fortawesome/fontawesome-free-webfonts/css/fa-solid.css';
 
 Vue.config.productionTip = false;
-
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

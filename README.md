@@ -2,6 +2,7 @@
 
 > A Vue.js project
 
+https://medium.com/@anaida07/mevn-stack-application-part-1-3a27b61dcae0
 ## Build Setup
 
 ``` bash
