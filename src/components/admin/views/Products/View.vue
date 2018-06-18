@@ -6,10 +6,10 @@
 
 <script>
 export default {
-  name: 'Dashboard',
+  name: 'ViewProducts',
   data () {
     return {
-      msg: 'Welcome to dashboard'
+      msg: 'Welcome to products'
     }
   }
 }

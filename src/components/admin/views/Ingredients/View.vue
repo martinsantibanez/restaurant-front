@@ -6,10 +6,10 @@
 
 <script>
 export default {
-  name: 'Dashboard',
+  name: 'ViewIngredients',
   data () {
     return {
-      msg: 'Welcome to dashboard'
+      msg: 'Welcome to ingredients'
     }
   }
 }

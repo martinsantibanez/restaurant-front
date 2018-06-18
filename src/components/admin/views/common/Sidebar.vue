@@ -2,7 +2,7 @@
   <nav class="col-md-2 d-none d-md-block bg-light sidebar">
     <div class="sidebar-sticky">
       <ul class="nav flex-column">
-        <li class="nav-item" v-for="item in sidebarItems" :key="item.route">
+        <li class="nav-item" v-for="item in sidebarItems" :key="item.title">
           <router-link class="nav-link" :to="item.route" active-class="active">
           <!-- <a class="nav-link active" href="#"> -->
             <i class="fa-fw" :class="item.faIcon"></i>
@@ -21,10 +21,10 @@ export default {
   data () {
     return {
       sidebarItems: [
-        { title: 'Dashboard', route: 'dashboard', faIcon: 'fa fa-columns' },
-        { title: 'Categorias', route: 'categories',  faIcon:'fa fa-list' },
-        { title: 'Productos', route: 'products', faIcon: 'fab fa-product-hunt' },
-        { title: 'Ingredientes', route: 'ingredients', faIcon: 'fa fa-info' }
+        { title: 'Dashboard', route: { name: 'Dashboard' }, faIcon: 'fa fa-columns' },
+        { title: 'Categorias', route: { name: 'Categories' },  faIcon:'fa fa-list' },
+        { title: 'Productos', route: { name: 'Products' }, faIcon: 'fab fa-product-hunt' },
+        { title: 'Ingredientes', route: { name: 'Ingredients' }, faIcon: 'fa fa-info' }
       ]
     }
   }
