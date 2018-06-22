@@ -10,7 +10,7 @@
           Show
         </b-form-checkbox>
       </b-form-group>
-      <b-button type="submit" variant="primary">Add</b-button>
+      <b-button type="submit" variant="primary">Save changes</b-button>
     </b-form>
   </div>
 </template>
@@ -42,7 +42,8 @@ export default {
         name: this.name,
         show: this.show
       })
-      this.$router.push({ name: 'Categories' })
+      .then(() => this.$router.push({ name: 'Categories' }), e => console.log(e));
+      // .catch(e => console.log(e));
     }
     
   }

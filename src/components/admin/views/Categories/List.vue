@@ -4,6 +4,7 @@
     <b-button :to="{name: 'addCategory'}">Add</b-button>
     <b-table responsive hover :items="categories" :fields="fields">
       <template slot="action" slot-scope="data">
+        <b-button :to="{ name:'productsInCategory', params: { id: data.item._id } }">Products</b-button>
         <b-button :to="{ name: 'editCategory', params: { id: data.item._id } }">Edit</b-button>
         <b-button @click="deleteCategory(data.item._id)">Delete</b-button>
       </template>

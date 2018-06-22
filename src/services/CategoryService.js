@@ -4,6 +4,9 @@ export default {
   getCategory(params) {
     return Api().get('categories/'+params.id)
   },
+  getProducts(params) {
+    return Api().get('categories/'+params.id+'/products')
+  },
   getCategories () {
     return Api().get('categories');
   },

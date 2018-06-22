@@ -1,7 +1,6 @@
 <template>
-  <div class="wrapper toggled">
+  <div>
     <Navbar></Navbar>
-    <div class="container-fluid">
       <div class="row">
         <Sidebar></Sidebar>
 
@@ -9,7 +8,7 @@
           <router-view/>
         </main>
       </div>
-    </div>
+  </div>
 </div>
 </template>
 
@@ -41,7 +40,7 @@ body {
   height: 16px;
   vertical-align: text-bottom;
 }
-
 .border-top { border-top: 1px solid #e5e5e5; }
 .border-bottom { border-bottom: 1px solid #e5e5e5; }
+
 </style>
