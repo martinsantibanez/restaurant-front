@@ -22,9 +22,9 @@ export default {
     return {
       sidebarItems: [
         { title: 'Dashboard', route: { name: 'Dashboard' }, faIcon: 'fa fa-columns' },
-        { title: 'Categorias', route: { name: 'Categories' },  faIcon:'fa fa-list' },
-        { title: 'Productos', route: { name: 'Products' }, faIcon: 'fab fa-product-hunt' },
-        { title: 'Ingredientes', route: { name: 'Ingredients' }, faIcon: 'fa fa-info' }
+        { title: 'Categories', route: { name: 'Categories' },  faIcon:'fa fa-list' },
+        { title: 'Products', route: { name: 'Products' }, faIcon: 'fab fa-product-hunt' },
+        { title: 'Ingredients', route: { name: 'Ingredients' }, faIcon: 'fa fa-info' }
       ]
     }
   }

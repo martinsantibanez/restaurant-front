@@ -1,11 +1,17 @@
 import AdminLayout from './views/common/Layout';
 import DashboardView from './views/Dashboard';
+
 import ViewCategories from './views/Categories/List';
-import EditCategory from './views/Categories/Edit';
 import AddCategory from './views/Categories/Add';
-import ViewProducts from './views/Products/List';
-import ViewIngredients from './views/Ingredients/List';
+import EditCategory from './views/Categories/Edit';
 import ProductsInCategory from './views/Categories/Products';
+
+import ViewProducts from './views/Products/List';
+import AddProduct from './views/Products/Add';
+import EditProduct from './views/Products/Edit';
+import ProductRecipe from './views/Products/Recipe';
+
+import ViewIngredients from './views/Ingredients/List';
 
 export default [
   {
@@ -43,6 +49,21 @@ export default [
         path: 'products',
         name: 'Products',
         component: ViewProducts
+      },
+      {
+        path: 'products/add',
+        name: 'addProduct',
+        component: AddProduct
+      },
+      {
+        path: 'products/:id/edit',
+        name: 'editProduct',
+        component: EditProduct
+      },
+      {
+        path: 'products/:id/recipe',
+        name:'productRecipe',
+        component: ProductRecipe
       },
       {
         path: 'ingredients',

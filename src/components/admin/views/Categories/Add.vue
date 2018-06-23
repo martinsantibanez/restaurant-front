@@ -26,12 +26,12 @@ export default {
     }
   },
   methods: {
-    async addCategory () {
+    async addCategory(){
       await CategoryService.addCategory({
         name: this.name,
         show: this.show
       })
-      this.$router.push({ name: 'Categories' })
+      .then(() => this.$router.push({ name: 'Categories' }), e => console.log(e)); 
     }
   }
 }
