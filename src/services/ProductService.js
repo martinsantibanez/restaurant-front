@@ -14,7 +14,7 @@ export default {
   editProduct(params){
     return Api().put('products/'+params.id, params);
   },
-  deleteProduct(id){
-    return Api().delete('products/'+id);
+  deleteProduct(params){
+    return Api().delete('products/'+params.id);
   }
 };

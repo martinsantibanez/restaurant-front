@@ -12,6 +12,8 @@ import EditProduct from './views/Products/Edit';
 import ProductRecipe from './views/Products/Recipe';
 
 import ViewIngredients from './views/Ingredients/List';
+import AddIngredient from './views/Ingredients/Add';
+import EditIngredient from './views/Ingredients/Edit';
 
 export default [
   {
@@ -69,6 +71,16 @@ export default [
         path: 'ingredients',
         name: 'Ingredients',
         component: ViewIngredients
+      },
+      {
+        path: 'ingredients/add',
+        name: 'addIngredient',
+        component: AddIngredient
+      },
+      {
+        path: 'ingredients/:id/edit',
+        name: 'editIngredient',
+        component: EditIngredient
       }
     ],
     redirect: {name: 'Dashboard'}

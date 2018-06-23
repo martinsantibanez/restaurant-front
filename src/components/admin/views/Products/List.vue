@@ -32,7 +32,7 @@ export default {
       this.products = response.data;
     },
     async deleteProduct(id){
-      await ProductService.deleteProduct(id);
+      await ProductService.deleteProduct({id: id});
       this.getProducts();
     }
 

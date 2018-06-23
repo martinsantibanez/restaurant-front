@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Edit Category</h1>
+    <h1>Edit Category {{name}}</h1>
     <b-form @submit="editCategory">
       <b-form-group label="Name:" label-for="name">
         <b-form-input id="name" type="text" v-model="name" required></b-form-input>
