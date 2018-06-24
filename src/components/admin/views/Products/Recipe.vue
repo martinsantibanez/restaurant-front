@@ -2,9 +2,12 @@
   <div>
     <h2>Recipe for {{ product.name }} </h2>
     <b-badge>{{msg}}</b-badge>
-    <b-table responsive hover :items="category.products" :fields="tableFields">
+    <b-table responsive hover :items="product.recipe" :fields="tableFields">
+      <template slot="quantity" slot-scope="data">
+        {{ data.item.quantity }} {{ data.item.ingredient.unit }}
+      </template>
       <template slot="action" slot-scope="data">
-        <b-button @click="removeProduct(data.item._id)">Remove</b-button>
+        <b-button @click="removeIngredient(data.item._id)">Remove</b-button>
       </template>
       <template slot="bottom-row" slot-scope="data">
         <td>
@@ -12,18 +15,23 @@
         </td>
       </template>
     </b-table>
-    <b-input-group prepend="Add:">
-      <v-select label="name" :options="products" @search:focus="getProducts" v-model="selected"></v-select>
-      <b-button @click="addProduct" variant="success" slot="append">
-        <i class="fa fa-plus fa"></i>
-      </b-button>
-    </b-input-group>
+    <b-form-group>
+      <b-input-group prepend="Add:">
+        <v-select label="name" :options="ingredients" @search:focus="getIngredients" v-model="selected"></v-select>
+        <b-button @click="addIngredient" variant="success" slot="append">
+          <i class="fa fa-plus fa"></i>
+        </b-button>
+      </b-input-group>
+      <b-input-group v-if="selected" :append="selected.unit">
+        <b-form-input id="quantityAdd" type="number" v-model="quantityAdd" placeholder="amount"></b-form-input>
+      </b-input-group>
+    </b-form-group>
   </div>
 </template>
 
 <script>
-import CategoryService from '@/services/CategoryService';
 import ProductService from '@/services/ProductService';
+import IngredientService from '@/services/IngredientService';
 import _ from 'lodash';
 
 export default {
@@ -31,42 +39,43 @@ export default {
   data () {
     return {
       selected: null,
-      category: {},
-      products: [],
-      tableFields: ['name', 'price', 'description', 'action'],
-      msg: 'Products in category'
+      product: {},
+      ingredients: [],
+      tableFields: ['ingredient.name', 'quantity', 'action'],
+      quantityAdd: 0,
+      msg: 'Recipe for product'
     }
   },
   mounted () {
-    this.getCategory();
-    // this.getProducts();
+    this.getProduct();
   },
   methods: {
-    async getCategory(){
-      const response = await CategoryService.getCategory({
+    async getProduct(){
+      const response = await ProductService.getProduct({
         id: this.$route.params.id
       });
-      this.category = response.data;
+      this.product = response.data;
     },
-    async getProducts(){
-      const response = await ProductService.getProducts();
-      this.products = _.differenceBy(response.data, this.category.products, '_id');
+    async getIngredients(){
+      const response = await IngredientService.getIngredients();
+      this.ingredients = _.differenceBy(response.data, this.product.recipe.map(i => i.ingredient), '_id');
     },
-    async addProduct () {
-      await CategoryService.addProduct({
-        category_id: this.$route.params.id,
-        product_id: this.selected._id
+    async addIngredient () {
+      await ProductService.addIngredient({
+        product_id: this.$route.params.id,
+        ingredient: this.selected._id,
+        quantity: this.quantityAdd
       });
       this.selected = null;
-      this.getCategory();
-      // this.$router.push({ name: 'Categories' })
+      this.quantityAdd = 0;
+      this.getProduct();
     },
-    async removeProduct(id){
-      await CategoryService.removeProduct({
-        category_id: this.$route.params.id,
-        product_id: id
+    async removeIngredient(id){
+      await ProductService.removeIngredient({
+        product_id: this.$route.params.id,
+        element_id: id
       });
-      this.getCategory();
+      this.getProduct();
     }
   }
 }

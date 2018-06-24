@@ -1,5 +1,5 @@
 <template>
-  <b-col sm="6">
+  <div>
     <h1 class="text-center">Add Ingredient</h1>
     <b-form @submit="addIngredient">
       <b-form-group label="Name:" label-for="name">
@@ -13,7 +13,7 @@
       </b-form-group>
       <b-button type="submit" variant="primary">Add</b-button>
     </b-form>
-  </b-col>
+  </div>
 </template>
 
 <script>
@@ -34,7 +34,7 @@ export default {
         stock: this.stock,
         unit: this.unit
       })
-      .then(() => this.$router.push({ name: 'Ingredients' }), e => console.log(e)); 
+      .then( () => this.$router.push({ name: 'Ingredients' }), e => console.log(e) ); 
     }
   }
 }

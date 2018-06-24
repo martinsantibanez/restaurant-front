@@ -39,7 +39,6 @@ export default {
   },
   mounted () {
     this.getCategory();
-    // this.getProducts();
   },
   methods: {
     async getCategory(){
