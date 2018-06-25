@@ -3,7 +3,7 @@ import Api from './Api';
 //TODO documentar
 export default {
   getIngredients () {
-    return Api().get('ingredients');
+    return Api().get('ingredients', {headers: {'Authorization': "Bearer " + localStorage.getItem('jwtToken')}});
   },
   getIngredient(params) {
     return Api().get('ingredients/'+params.id)

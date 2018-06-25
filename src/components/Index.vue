@@ -2,8 +2,9 @@
   <div class="hello">
     <h1>{{ msg }}</h1>
     <router-link to="/admin">
-    <h2>Admin</h2>
+      <h2>Admin</h2>
     </router-link>
+    <router-link to="/login"><h2>Login</h2></router-link>
   </div>
 </template>
 
