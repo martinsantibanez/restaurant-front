@@ -15,6 +15,8 @@ import ViewIngredients from './views/Ingredients/List';
 import AddIngredient from './views/Ingredients/Add';
 import EditIngredient from './views/Ingredients/Edit';
 
+import ViewUsers from './views/Users/List';
+import EditUser from './views/Users/Edit';
 export default [
   {
     path: '/admin',
@@ -26,7 +28,7 @@ export default [
         path: 'dashboard',
         name: 'Dashboard',
         component: DashboardView,
-        redirect: {name: 'Categories'}
+        redirect: { name: 'Categories' }
       },
       {
         path: 'categories',
@@ -86,6 +88,17 @@ export default [
         path: 'ingredients/:id/edit',
         name: 'editIngredient',
         component: EditIngredient,
+        props: true
+      },
+      {
+        path: 'users',
+        name: 'Users',
+        component: ViewUsers
+      },
+      {
+        path: 'users/:id/edit',
+        name: 'editUser',
+        component: EditUser,
         props: true
       }
     ],
