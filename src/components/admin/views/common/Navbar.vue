@@ -19,7 +19,7 @@ export default {
   },
   methods: {
     logout(){
-      localStorage.removeItem('jwtToken');
+      this.$store.dispatch('auth/logout');
       this.$router.push('/')
     }
   }

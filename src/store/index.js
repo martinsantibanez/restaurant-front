@@ -5,9 +5,10 @@ import Vuex from 'vuex';
 import ingredients from './modules/ingredients';
 import categories from './modules/categories';
 import products from './modules/products';
+import auth from './modules/auth';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  modules: { ingredients: ingredients, categories: categories, products: products }
+  modules: { ingredients: ingredients, categories: categories, products: products, auth: auth }
   // modules: { auth, ingredients }
 });

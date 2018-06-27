@@ -1,19 +1,30 @@
-import axios from 'axios';
-import config from '@/helpers/config';
-
-const state = {
-  token: init
-}
-
-const mutations = {
-  setToken(state, token) {
-    state.token = token;
-  },
-  resetToken(state) {
-    state.token = '';
-  }
-}
+import Api from '@/services/Api';
 
 export default {
-  state, mutations
+  namespaced: true,
+  state: {
+    token: ''
+  },
+  getters: {
+    token(state) {
+      return state.token;
+    }
+  },
+  mutations: {
+    setToken(state, token) {
+      state.token = token;
+    },
+    resetToken(state) {
+      state.token = '';
+    }
+  },
+  actions: {
+    async login({commit}, user){
+      const response = await Api().post('http://localhost:3000/api/login/', user);
+      commit('setToken', response.data.token);
+    },
+    logout({commit}) {
+      commit('resetToken');
+    }
+  }
 }

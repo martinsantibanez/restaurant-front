@@ -12,14 +12,14 @@
                   :label-cols="4"
                   breakpoint="md"
                   label="Enter Username">
-          <b-form-input id="email" v-model.trim="login.email"></b-form-input>
+          <b-form-input id="email" v-model.trim="user.email"></b-form-input>
         </b-form-group>
         <b-form-group
                   horizontal
                   :label-cols="4"
                   breakpoint="md"
                   label="Enter Password">
-        <b-form-input type="password" id="password" v-model.trim="login.password"></b-form-input>
+        <b-form-input type="password" id="password" v-model.trim="user.password"></b-form-input>
         </b-form-group>
         <b-button type="submit" variant="primary">Login</b-button>
         <b-button type="button" variant="success" @click.stop="register()">Register</b-button>
@@ -31,29 +31,29 @@
 <script>
 
 import axios from 'axios'
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Login',
   data () {
     return {
-      login: {},
+      user: {},
       errors: []
     }
   },
   methods: {
-    onSubmit (evt) {
+    ...mapActions('auth', ['login']),
+    async onSubmit (evt) {
       evt.preventDefault()
-      axios.post(`http://localhost:3000/api/login/`, this.login)
-      .then(response => {
-        localStorage.setItem('jwtToken', response.data.token)
+      try{
+        await this.login(this.user);
         this.$router.push({
-          name: 'Ingredients'
-        })
-      })
-      .catch(e => {
+          name: 'Admin'
+        });
+      } catch(e) {
         console.log(e)
         this.errors.push(e)
-      })
+      }
     },
     register () {
       this.$router.push({

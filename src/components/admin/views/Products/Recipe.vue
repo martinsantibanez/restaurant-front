@@ -7,7 +7,7 @@
         {{ data.item.quantity }} {{ data.item.ingredient.unit }}
       </template>
       <template slot="action" slot-scope="data">
-        <b-button @click="removeIngredient(data.item._id)">Remove</b-button>
+        <b-button @click="removeIngredientFromRecipe(data.item._id)">Remove</b-button>
       </template>
       <template slot="bottom-row" slot-scope="data">
         <td>
@@ -17,8 +17,9 @@
     </b-table>
     <b-form-group>
       <b-input-group prepend="Add:">
-        <v-select label="name" :options="ingredients" @search:focus="getIngredients" v-model="selected"></v-select>
+        <v-select label="name" :options="availableIngredients" v-model="selected"></v-select>
         <b-button @click="addIngredient" variant="success" slot="append">
+        <!-- <b-button variant="success" slot="append"> -->
           <i class="fa fa-plus fa"></i>
         </b-button>
       </b-input-group>
@@ -31,50 +32,37 @@
 
 <script>
 import _ from 'lodash';
+import { mapGetters, mapActions, mapState } from 'vuex';
 
 export default {
   name: 'ProductsInCategory',
+  props: ['id'],
   data () {
     return {
       selected: null,
-      product: {},
-      ingredients: [],
+      // product: {},
+      // ingredients: [],
       tableFields: ['ingredient.name', 'quantity', 'action'],
       quantityAdd: 0,
       msg: 'Recipe for product'
     }
   },
-  mounted () {
-    this.getProduct();
+  computed: {
+    ...mapState('products', ['product']),
+    ...mapGetters('products', ['availableIngredients'])
+  },
+  created() {
+    this.getIngredients();
+    this.getProductById(this.id);
   },
   methods: {
-    /*async getProduct(){
-      const response = await ProductService.getProduct({
-        id: this.$route.params.id
-      });
-      this.product = response.data;
-    },
-    async getIngredients(){
-      const response = await IngredientService.getIngredients();
-      this.ingredients = _.differenceBy(response.data, this.product.recipe.map(i => i.ingredient), '_id');
-    },
-    async addIngredient () {
-      await ProductService.addIngredient({
-        product_id: this.$route.params.id,
-        ingredient: this.selected._id,
-        quantity: this.quantityAdd
-      });
+    ...mapActions('products', ['getProductById', 'addIngredientToRecipe', 'removeIngredientFromRecipe']),
+    ...mapActions('ingredients', ['getIngredients']),
+    async addIngredient() {
+      let elem = {ingredient: this.selected._id, quantity: this.quantityAdd};
+      await this.addIngredientToRecipe(elem);
       this.selected = null;
-      this.quantityAdd = 0;
-      this.getProduct();
-    },
-    async removeIngredient(id){
-      await ProductService.removeIngredient({
-        product_id: this.$route.params.id,
-        element_id: id
-      });
-      this.getProduct();
-    }*/
+    }
   }
 }
 </script>

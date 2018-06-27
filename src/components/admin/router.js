@@ -25,7 +25,8 @@ export default [
       {
         path: 'dashboard',
         name: 'Dashboard',
-        component: DashboardView
+        component: DashboardView,
+        redirect: {name: 'Categories'}
       },
       {
         path: 'categories',
@@ -46,7 +47,8 @@ export default [
       {
         path: 'categories/:id/products',
         name: 'productsInCategory',
-        component: ProductsInCategory
+        component: ProductsInCategory,
+        props: true
       },
       {
         path: 'products',
@@ -67,7 +69,8 @@ export default [
       {
         path: 'products/:id/recipe',
         name:'productRecipe',
-        component: ProductRecipe
+        component: ProductRecipe,
+        props: true
       },
       {
         path: 'ingredients',

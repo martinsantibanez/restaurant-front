@@ -1,13 +1,16 @@
 import Api from '@/services/Api';
+import _ from 'lodash';
 
 export default {
   namespaced: true,
   state: {
     list: [],
-    category: {}
+    category: {},
   },
   getters: {
-
+    availableProducts (state, getters, rootState){
+      return _.differenceBy(rootState.products.list, state.category.products, '_id');
+    }
   },
   mutations: {
     setAllCategories(state, category){
@@ -19,14 +22,14 @@ export default {
   },
   actions: {
     async getCategories({commit}){
-      var response = await Api().get('categories');
+      const response = await Api().get('categories');
       commit('setAllCategories', response.data);
     },
     async addCategory({commit}, newCategory){
       await Api().post('categories', newCategory);
     },
     async getCategoryById({commit}, id){
-      var response = await Api().get('categories/'+id);
+      const response = await Api().get('categories/'+id);
       commit('setCategory', response.data);
     },
     async editCategory({commit}, editedCategory){
@@ -35,6 +38,14 @@ export default {
     async deleteCategory({commit, dispatch}, id){
       await Api().delete('categories/'+id);
       dispatch('getCategories');
+    },
+    async addProductToCategory({commit, dispatch, state}, product_id){
+      const response = await Api().post('categories/'+state.category._id+'/products', { id: product_id });
+      commit('setCategory', response.data);
+    },
+    async removeProductFromCategory({commit, dispatch, state}, product_id){
+      const response = await Api().delete('categories/'+state.category._id+'/products/'+product_id);
+      commit('setCategory', response.data);
     }
   }
 }

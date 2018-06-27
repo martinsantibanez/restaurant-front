@@ -19,14 +19,14 @@ export default {
   },
   actions: {
     async getIngredients({commit}){
-      var response = await Api().get('ingredients');
+      const response = await Api().get('ingredients');
       commit('setAllIngredients', response.data);
     },
     async addIngredient({commit}, newIngredient){
       await Api().post('ingredients', newIngredient);
     },
     async getIngredientById({commit}, id){
-      var response = await Api().get('ingredients/'+id);
+      const response = await Api().get('ingredients/'+id);
       commit('setIngredient', response.data);
     },
     async editIngredient({commit}, editedIngredient){
