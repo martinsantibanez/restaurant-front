@@ -1,12 +1,12 @@
 <template>
   <div>
-    <h1>Edit Category {{name}}</h1>
-    <b-form @submit="editCategory">
+    <h1>Edit Category <b-badge>{{selectedCategory.name}}</b-badge></h1>
+    <b-form @submit="submitForm">
       <b-form-group label="Name:" label-for="name">
-        <b-form-input id="name" type="text" v-model="name" required></b-form-input>
+        <b-form-input id="name" type="text" v-model="selectedCategory.name" required></b-form-input>
       </b-form-group>
       <b-form-group>
-        <b-form-checkbox id="show" v-model="show" value="true" unchecked-value="false">
+        <b-form-checkbox id="show" v-model="selectedCategory.show" value="true" unchecked-value="false">
           Show
         </b-form-checkbox>
       </b-form-group>
@@ -16,41 +16,33 @@
 </template>
 
 <script>
-import CategoryService from '@/services/CategoryService';
+import { mapState, mapActions } from 'vuex';
 export default {
   name: 'EditCategory',
+  props: ['id'],
   data () {
-    return {
-      name: '',
-      show: true
-    }
+    return {}
   },
-  mounted () {
-    this.getCategory()
+  computed: mapState('categories', {
+    selectedCategory: state => state.category
+  }),
+  created() {
+    this.getCategoryById(this.id);
   },
   methods: {
-    async getCategory(){
-      const response = await CategoryService.getCategory({
-        id: this.$route.params.id
-      })
-      this.name = response.data.name
-      this.show = response.data.show
-    },
-    async editCategory(){
-      await CategoryService.editCategory({
-        id: this.$route.params.id,
-        name: this.name,
-        show: this.show
-      })
-      .then(() => this.$router.push({ name: 'Categories' }), e => console.log(e));
-      // .catch(e => console.log(e));
-    }
-    
+    ...mapActions('categories', ['editCategory', 'getCategoryById']),
+    async submitForm(){
+      try {
+        await this.editCategory(this.selectedCategory);
+        this.$router.push({ name: 'Categories' });
+      } catch(e) {
+        console.log(e);
+      }
+    }    
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 
 </style>

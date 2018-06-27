@@ -13,29 +13,25 @@
 </template>
 
 <script>
-import CategoryService from '@/services/CategoryService';
+import { mapActions } from 'vuex';
+import { mapState } from 'vuex';
 export default {
   name: 'Categories',
   data () {
     return {
-      categories: [],
+
       fields: ['name', 'show', 'action'],
       msg: 'Welcome to categories'
     }
   },
-  mounted () {
-    this.getCategories()
+  computed: mapState('categories', {
+    categories: state => state.list
+  }),
+  created () {
+    this.getCategories();
   },
   methods: {
-    async getCategories(){
-      const response = await CategoryService.getCategories();
-      this.categories = response.data;
-    },
-    async deleteCategory(id){
-      await CategoryService.deleteCategory({id: id});
-      this.getCategories();
-    }
-
+    ...mapActions('categories', ['getCategories', 'deleteCategory'])
   }
 }
 </script>

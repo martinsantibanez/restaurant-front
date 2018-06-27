@@ -22,8 +22,8 @@
 </template>
 
 <script>
-import CategoryService from '@/services/CategoryService';
-import ProductService from '@/services/ProductService';
+// import CategoryService from '@/services/CategoryService';
+// import ProductService from '@/services/ProductService';
 import _ from 'lodash';
 
 export default {
@@ -38,10 +38,10 @@ export default {
     }
   },
   mounted () {
-    this.getCategory();
+    // this.getCategory();
   },
   methods: {
-    async getCategory(){
+    /*async getCategory(){
       const response = await CategoryService.getCategory({
         id: this.$route.params.id
       });
@@ -66,7 +66,7 @@ export default {
         product_id: id
       });
       this.getCategory();
-    }
+    }*/
   }
 }
 </script>

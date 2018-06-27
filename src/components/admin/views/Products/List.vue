@@ -13,29 +13,23 @@
 </template>
 
 <script>
-import ProductService from '@/services/ProductService';
+import { mapState, mapActions } from 'vuex';
 export default {
   name: 'Products',
   data () {
     return {
-      products: [],
       fields: ['name', 'price', {key: 'description', class: 'description'}, 'action'],
       msg: 'Welcome to products'
     }
   },
-  mounted () {
-    this.getProducts()
+  computed: mapState('products', {
+    products: state => state.list
+  }),
+  created () {
+    this.getProducts();
   },
   methods: {
-    async getProducts(){
-      const response = await ProductService.getProducts();
-      this.products = response.data;
-    },
-    async deleteProduct(id){
-      await ProductService.deleteProduct({id: id});
-      this.getProducts();
-    }
-
+    ...mapActions('products', ['getProducts', 'deleteProduct']),
   }
 }
 </script>

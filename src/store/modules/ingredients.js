@@ -1,5 +1,4 @@
 import Api from '@/services/Api';
-import axios from 'axios';
 
 export default {
   namespaced: true,
@@ -14,7 +13,7 @@ export default {
     setAllIngredients(state, ingredients){
       state.list = ingredients;
     },
-    setIngredientById(state, ingredient){
+    setIngredient(state, ingredient){
       state.ingredient = ingredient;
     }
   },
@@ -28,7 +27,7 @@ export default {
     },
     async getIngredientById({commit}, id){
       var response = await Api().get('ingredients/'+id);
-      commit('setIngredientById', response.data);
+      commit('setIngredient', response.data);
     },
     async editIngredient({commit}, editedIngredient){
       await Api().put('ingredients/'+editedIngredient._id, editedIngredient);

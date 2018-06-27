@@ -30,8 +30,6 @@
 </template>
 
 <script>
-import ProductService from '@/services/ProductService';
-// import IngredientService from '@/services/IngredientService';
 import _ from 'lodash';
 
 export default {
@@ -50,16 +48,16 @@ export default {
     this.getProduct();
   },
   methods: {
-    async getProduct(){
+    /*async getProduct(){
       const response = await ProductService.getProduct({
         id: this.$route.params.id
       });
       this.product = response.data;
     },
-    /*async getIngredients(){
+    async getIngredients(){
       const response = await IngredientService.getIngredients();
       this.ingredients = _.differenceBy(response.data, this.product.recipe.map(i => i.ingredient), '_id');
-    },*/
+    },
     async addIngredient () {
       await ProductService.addIngredient({
         product_id: this.$route.params.id,
@@ -76,7 +74,7 @@ export default {
         element_id: id
       });
       this.getProduct();
-    }
+    }*/
   }
 }
 </script>

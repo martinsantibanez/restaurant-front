@@ -1,19 +1,19 @@
 <template>
   <div>
-    <h1>Edit Product</h1>
-    <b-form @submit="editProduct">
+    <h1>Edit Product <b-badge>{{selectedProduct.name}}</b-badge></h1>
+    <b-form @submit="submitForm">
       <b-form-group label="Name:" label-for="name">
-        <b-form-input id="name" type="text" v-model="name" required></b-form-input>
+        <b-form-input id="name" type="text" v-model="selectedProduct.name" required></b-form-input>
       </b-form-group>
       <b-form-group label="Price:" label-for="price">
         <b-input-group prepend="$">
 
-        <b-form-input id="price" type="number" v-model="price"></b-form-input>
+        <b-form-input id="price" type="number" v-model="selectedProduct.price"></b-form-input>
         </b-input-group>
       </b-form-group>
       <b-form-group label="Description:" label-for="description">
         <b-form-textarea id="description"
-                  v-model="description"
+                  v-model="selectedProduct.description"
                   :rows="3"
                   :max-rows="6">
         </b-form-textarea>
@@ -24,34 +24,29 @@
 </template>
 
 <script>
-import ProductService from '@/services/ProductService';
+import { mapState, mapActions } from 'vuex';
 export default {
-  name: 'AddProduct',
+  name: 'EditProduct',
+  props: ['id'],
   data () {
     return {
-      name: '',
-      price: 0,
-      description: ''
     }
   },
-  mounted() {
-    this.getProduct();
+  computed: mapState('products', {
+    selectedProduct: state => state.product
+  }),
+  created() {
+    this.getProductById(this.id);
   },
   methods: {
-    async getProduct(){
-      const response = await ProductService.getProduct({id: this.$route.params.id});
-      this.name = response.data.name;
-      this.price = response.data.price;
-      this.description = response.data.description;
-    },
-    async editProduct(){
-      await ProductService.editProduct({
-        id: this.$route.params.id,
-        name: this.name,
-        price: this.price,
-        description: this.description
-      })
-      .then(() => this.$router.push({ name: 'Products' }), e => console.log(e)); 
+    ...mapActions('products', ['getProductById','editProduct']),
+    async submitForm(){
+      try {
+        await this.editProduct(this.selectedProduct);
+        this.$router.push({ name: 'Products' })
+      } catch(e) {
+        console.log(e);
+      }
     }
   }
 }

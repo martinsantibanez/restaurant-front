@@ -1,12 +1,12 @@
 <template>
   <div>
     <h1>Add Category</h1>
-    <b-form @submit="addCategory">
+    <b-form @submit="submitForm">
       <b-form-group label="Name:" label-for="name">
-        <b-form-input id="name" type="text" v-model="name" required></b-form-input>
+        <b-form-input id="name" type="text" v-model="newCategory.name" required></b-form-input>
       </b-form-group>
       <b-form-group>
-        <b-form-checkbox id="show" v-model="show" value="true" unchecked-value="false">
+        <b-form-checkbox id="show" v-model="newCategory.show" value="true" unchecked-value="false">
           Show
         </b-form-checkbox>
       </b-form-group>
@@ -16,22 +16,26 @@
 </template>
 
 <script>
-import CategoryService from '@/services/CategoryService';
+import { mapActions } from 'vuex';
 export default {
   name: 'AddCategory',
   data () {
     return {
-      name: '',
-      show: true
+      newCategory: {
+        'name': '',
+        'show': true
+      }
     }
   },
   methods: {
-    async addCategory(){
-      await CategoryService.addCategory({
-        name: this.name,
-        show: this.show
-      })
-      .then(() => this.$router.push({ name: 'Categories' }), e => console.log(e)); 
+    ...mapActions('categories', ['addCategory']),
+    async submitForm(){
+      try {
+        await this.addCategory(this.newCategory);
+        this.$router.push({name: 'Categories'});
+      } catch(e) {
+        console.log(e);
+      }
     }
   }
 }

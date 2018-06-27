@@ -40,7 +40,8 @@ export default [
       {
         path: 'categories/:id/edit',
         name: 'editCategory',
-        component: EditCategory
+        component: EditCategory,
+        props: true
       },
       {
         path: 'categories/:id/products',
@@ -60,7 +61,8 @@ export default [
       {
         path: 'products/:id/edit',
         name: 'editProduct',
-        component: EditProduct
+        component: EditProduct,
+        props: true
       },
       {
         path: 'products/:id/recipe',

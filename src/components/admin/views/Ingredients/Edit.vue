@@ -29,10 +29,10 @@ export default {
     selectedIngredient: state => state.ingredient
   }),
   created(){
-    this.$store.dispatch('ingredients/getIngredientById', this.id);
+    this.getIngredientById(this.id);
   },
   methods: {
-    ...mapActions('ingredients', ['editIngredient']),
+    ...mapActions('ingredients', ['editIngredient', 'getIngredientById']),
     async submitForm(){
       try{
         await this.editIngredient(this.selectedIngredient);
