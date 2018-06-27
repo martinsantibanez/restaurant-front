@@ -15,34 +15,29 @@
 </template>
 
 <script>
-import IngredientService from '@/services/IngredientService';
+import { mapState, mapActions } from 'vuex';
+
 export default {
   name: 'Ingredients',
   data () {
     return {
-      ingredients: [],
       fields: ['name', 'stock', 'action'],
       msg: 'Welcome to ingredients'
     }
   },
-  mounted () {
-    this.getIngredients()
+  computed: mapState('ingredients', {
+    ingredients: state => state.list
+  }),
+  created(){
+    this.getIngredients();
   },
   methods: {
-    async getIngredients(){
-      const response = await IngredientService.getIngredients();
-      this.ingredients = response.data;
-    },
-    async deleteIngredient(id){
-      await IngredientService.deleteIngredient({id: id});
-      this.getIngredients();
-    }
+    ...mapActions('ingredients', ['deleteIngredient', 'getIngredients']),
 
   }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 
 </style>

@@ -80,7 +80,8 @@ export default [
       {
         path: 'ingredients/:id/edit',
         name: 'editIngredient',
-        component: EditIngredient
+        component: EditIngredient,
+        props: true
       }
     ],
     redirect: {name: 'Dashboard'}
