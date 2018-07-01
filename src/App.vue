@@ -5,8 +5,10 @@
 </template>
 
 <script>
+import guards from '@/utils/guards'
   export default {
-    name: 'App'
+    name: 'App',
+    created: guards.auth
   }
 </script>
 

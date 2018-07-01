@@ -1,4 +1,4 @@
-import Api from '@/services/Api';
+import Api from '@/utils/Api';
 import _ from 'lodash';
 
 export default {
@@ -9,6 +9,7 @@ export default {
   },
   getters: {
     availableProducts (state, getters, rootState){
+      return rootState.products.list;
       return _.differenceBy(rootState.products.list, state.category.products, '_id');
     }
   },

@@ -1,4 +1,4 @@
-import Api from '@/services/Api';
+import Api from '@/utils/Api';
 
 export default {
   namespaced: true,

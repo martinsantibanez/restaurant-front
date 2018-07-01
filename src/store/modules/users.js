@@ -1,4 +1,4 @@
-import Api from '@/services/Api';
+import Api from '@/utils/Api';
 import _ from 'lodash';
 
 export default {
@@ -22,9 +22,10 @@ export default {
       const response = await Api().get('users');
       commit('setAllUsers', response.data);
     },
-/*    async addProduct({commit}, newProduct){
-      await Api().post('products', newProduct);
+    async addUser({commit}, newUser){
+      await Api().post('users', newUser);
     },
+    /*
     async getProductById({commit}, id){
       const response = await Api().get('products/'+id);
       commit('setProduct', response.data);

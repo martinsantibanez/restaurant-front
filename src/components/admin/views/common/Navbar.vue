@@ -1,7 +1,8 @@
 <template>
     <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
       <router-link :to="{name: 'Dashboard'}" class="navbar-brand col-sm-3 col-md-2 mr-0">RESTaurant</router-link>
-      <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+      <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
+      <p class="col-sm-6 form-control-dark">Logged in as {{user.firstName}} {{user.lastName}} ({{user.email}})</p>
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
           <a class="nav-link" href="#" @click="logout">Sign out</a>
@@ -11,12 +12,16 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 export default {
   name: 'Navbar',
   data () {
     return {
     }
   },
+  computed: mapState('auth', {
+    user: state => state.user
+  }),
   methods: {
     logout(){
       this.$store.dispatch('auth/logout');
@@ -44,7 +49,7 @@ export default {
 
 .form-control-dark {
   color: #fff;
-  background-color: rgba(255, 255, 255, .1);
+  /* background-color: rgba(255, 255, 255, .1); */
   border-color: rgba(255, 255, 255, .1);
 }
 

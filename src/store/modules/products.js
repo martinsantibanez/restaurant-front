@@ -1,4 +1,4 @@
-import Api from '@/services/Api';
+import Api from '@/utils/Api';
 import _ from 'lodash';
 
 export default {

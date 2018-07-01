@@ -17,12 +17,16 @@ import EditIngredient from './views/Ingredients/Edit';
 
 import ViewUsers from './views/Users/List';
 import EditUser from './views/Users/Edit';
+import AddUser from './views/Users/Add';
+
+import guards from '@/utils/guards';
 export default [
   {
     path: '/admin',
     name: 'Admin',
     component: AdminLayout,
     title: 'Admin',
+    beforeEnter: guards.isAdmin,
     children: [
       {
         path: 'dashboard',
@@ -100,6 +104,11 @@ export default [
         name: 'editUser',
         component: EditUser,
         props: true
+      },
+      {
+        path: 'users/add',
+        name: 'addUser',
+        component: AddUser
       }
     ],
     redirect: {name: 'Dashboard'}

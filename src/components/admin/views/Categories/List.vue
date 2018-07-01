@@ -19,7 +19,6 @@ export default {
   name: 'Categories',
   data () {
     return {
-
       fields: ['name', 'show', 'action'],
       msg: 'Welcome to categories'
     }

@@ -4,13 +4,16 @@
     <router-link to="/admin">
       <h2>Admin</h2>
     </router-link>
+    <router-link to="/user">
+      <h2>User</h2>
+    </router-link>
     <router-link to="/login"><h2>Login</h2></router-link>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: 'Index',
   data () {
     return {
       msg: 'Welcome to Your Vue.js App'

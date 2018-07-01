@@ -31,7 +31,7 @@
 <script>
 
 import axios from 'axios'
-import { mapActions } from 'vuex';
+import { mapActions, mapGetters } from 'vuex';
 
 export default {
   name: 'Login',
@@ -43,13 +43,16 @@ export default {
   },
   methods: {
     ...mapActions('auth', ['login']),
+    ...mapGetters('auth', ['role']),
     async onSubmit (evt) {
       evt.preventDefault()
-      try{
+      try {
         await this.login(this.user);
-        this.$router.push({
-          name: 'Admin'
-        });
+        //TODO module, list of roles, guards in routes
+        if(this.role()=="admin")
+          this.$router.push({name: 'Admin'});
+        else
+          this.$router.push({name: 'User'});
       } catch(e) {
         console.log(e)
         this.errors.push(e)
