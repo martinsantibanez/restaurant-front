@@ -7,9 +7,16 @@ import categories from './modules/categories';
 import products from './modules/products';
 import auth from './modules/auth';
 import users from './modules/users';
+import tables from './modules/tables';
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  modules: { ingredients: ingredients, categories: categories, products: products, auth: auth, users: users }
-  // modules: { auth, ingredients }
+  modules: { 
+    ingredients: ingredients,
+    categories: categories,
+    products: products,
+    auth: auth,
+    users: users,
+    tables: tables
+  }
 });

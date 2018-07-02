@@ -16,6 +16,9 @@ export default {
     setAllUsers(state, users){
       state.list = users;
     },
+    setUser(state, user){
+      state.user = user;
+    }
   },
   actions: {
     async getUsers({commit}){
@@ -25,26 +28,16 @@ export default {
     async addUser({commit}, newUser){
       await Api().post('users', newUser);
     },
-    /*
-    async getProductById({commit}, id){
-      const response = await Api().get('products/'+id);
-      commit('setProduct', response.data);
+    async editUser({commit}, editedUser){
+      await Api().put('users/'+editedUser._id, editedUser);
     },
-    async editProduct({commit}, editedProduct){
-      await Api().put('products/'+editedProduct._id, editedProduct);
+    async getUserById({commit}, id){
+      const response = await Api().get('users/'+id);
+      commit('setUser', response.data);
     },
-    async deleteProduct({commit, dispatch}, id){
-      await Api().delete('products/'+id);
-      dispatch('getProducts');
+    async deleteUser({commit, dispatch}, id){
+      await Api().delete('users/'+id);
+      dispatch('getUsers');
     },
-    async addIngredientToRecipe({commit, dispatch, state}, payload){
-      const response = await Api().post('products/'+state.product._id+'/recipe', payload);
-      // console.log(response.data);
-      commit('setProduct', response.data);
-    },
-    async removeIngredientFromRecipe({commit, dispatch, state}, id){
-      const response = await Api().delete('products/'+state.product._id+'/recipe/'+id);
-      commit('setProduct', response.data);
-    }*/
   }
 }

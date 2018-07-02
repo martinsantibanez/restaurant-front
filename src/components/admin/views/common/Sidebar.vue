@@ -25,7 +25,8 @@ export default {
         { title: 'Categories', route: { name: 'Categories' },  faIcon:'fa fa-list' },
         { title: 'Products', route: { name: 'Products' }, faIcon: 'fab fa-product-hunt' },
         { title: 'Ingredients', route: { name: 'Ingredients' }, faIcon: 'fa fa-info' },
-        { title: 'Users', route: { name: 'Users' }, faIcon: 'fa fa-user' }
+        { title: 'Users', route: { name: 'Users' }, faIcon: 'fa fa-user' },
+        { title: 'Tables', route: { name: 'Tables' }, faIcon: 'fa fa-table' },
       ]
     }
   }

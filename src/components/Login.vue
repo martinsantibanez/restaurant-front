@@ -47,12 +47,9 @@ export default {
     async onSubmit (evt) {
       evt.preventDefault()
       try {
-        await this.login(this.user);
+        const role = await this.login(this.user);
         //TODO module, list of roles, guards in routes
-        if(this.role()=="admin")
-          this.$router.push({name: 'Admin'});
-        else
-          this.$router.push({name: 'User'});
+        this.$router.push('/'+role);
       } catch(e) {
         console.log(e)
         this.errors.push(e)

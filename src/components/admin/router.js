@@ -19,6 +19,10 @@ import ViewUsers from './views/Users/List';
 import EditUser from './views/Users/Edit';
 import AddUser from './views/Users/Add';
 
+import ViewTables from './views/Tables/List';
+import EditTable from './views/Tables/Edit';
+import AddTable from './views/Tables/Add';
+
 import guards from '@/utils/guards';
 export default [
   {
@@ -109,7 +113,23 @@ export default [
         path: 'users/add',
         name: 'addUser',
         component: AddUser
-      }
+      },
+      {
+        path: 'tables',
+        name: 'Tables',
+        component: ViewTables
+      },
+      {
+        path: 'tables/:id/edit',
+        name: 'editTable',
+        component: EditTable,
+        props: true
+      },
+      {
+        path: 'tables/add',
+        name: 'addTable',
+        component: AddTable
+      },
     ],
     redirect: {name: 'Dashboard'}
   },

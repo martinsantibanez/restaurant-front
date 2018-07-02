@@ -31,7 +31,6 @@
 </template>
 
 <script>
-import _ from 'lodash';
 import { mapGetters, mapActions, mapState } from 'vuex';
 
 export default {
@@ -59,7 +58,7 @@ export default {
     ...mapActions('products', ['getProductById', 'addIngredientToRecipe', 'removeIngredientFromRecipe']),
     ...mapActions('ingredients', ['getIngredients']),
     async addIngredient() {
-      let elem = {ingredient: this.selected._id, quantity: this.quantityAdd};
+      let elem = { ingredient: this.selected._id, quantity: this.quantityAdd };
       await this.addIngredientToRecipe(elem);
       this.selected = null;
     }

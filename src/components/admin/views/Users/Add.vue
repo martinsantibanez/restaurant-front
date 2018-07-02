@@ -11,7 +11,7 @@
                   horizontal
                   :label-cols="4"
                   breakpoint="md"
-                  label="Username">
+                  label="Email">
           <b-form-input id="email" v-model.trim="user.email"></b-form-input>
         </b-form-group>
         <b-form-group
@@ -25,15 +25,8 @@
                   horizontal
                   :label-cols="4"
                   breakpoint="md"
-                  label="First Name">
-          <b-form-input type="text" id="firstName" v-model.trim="user.firstName"></b-form-input>
-        </b-form-group>
-        <b-form-group
-                  horizontal
-                  :label-cols="4"
-                  breakpoint="md"
-                  label="Last Name">
-          <b-form-input type="text" id="lastName" v-model.trim="user.lastName"></b-form-input>
+                  label="Name">
+          <b-form-input type="text" id="name" v-model.trim="user.name"></b-form-input>
         </b-form-group>
         <b-form-group
                   horizontal

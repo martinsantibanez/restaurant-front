@@ -36,6 +36,7 @@ export default {
         const token = response.data.token;
         const tokenUser = VueJwtDecode.decode(token).user;
         commit('setToken', {'token': token, 'user': tokenUser});
+        return tokenUser.role;
       } catch(e) {
         console.log(e);
       }
