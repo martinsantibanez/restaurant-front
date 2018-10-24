@@ -4,14 +4,14 @@ Vue.js frontend for RESTaurant
 Backend in [mertinop/restaurant-back](https://github.com/mertinop/restaurant-back)
 ## Useful links
 *Used or to use during the development*
-https://medium.com/@anaida07/mevn-stack-application-part-1-3a27b61dcae0
-https://sagalbot.github.io/vue-select/docs/Basics/Options.html
-https://github.com/iurii-kyrylenko/hobbies
-https://blog.sqreen.io/authentication-best-practices-vue/
-https://vueschool.io/articles/
-https://github.com/christiannwamba/scotch-vue-store
-  https://vuex.vuejs.org/guide/actions.html
-  https://vuejs.org/v2/guide/index.html
+- https://medium.com/@anaida07/mevn-stack-application-part-1-3a27b61dcae0
+- https://sagalbot.github.io/vue-select/docs/Basics/Options.html
+- https://github.com/iurii-kyrylenko/hobbies
+- https://blog.sqreen.io/authentication-best-practices-vue/
+- https://vueschool.io/articles/
+- https://github.com/christiannwamba/scotch-vue-store
+- https://vuex.vuejs.org/guide/actions.html
+- https://vuejs.org/v2/guide/index.html
 
 ## Build Setup
 
